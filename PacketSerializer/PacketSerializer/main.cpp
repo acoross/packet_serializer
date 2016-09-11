@@ -7,29 +7,81 @@
 //
 
 #include <iostream>
+#include <tuple>
 
 #include "packet_serializer_1.hpp"
 #include "packet_serializer_1_types.hpp"
 
-using namespace packet_serializer_1;
+#include "packet_serializer_2.hpp"
 
+#include "packet_serializer_3.hpp"
 
-class MyPacket : public Packet {
-public:
-	IntType i_val_{ this };
-	CharType c_val_{ this };
-	StringType str_val_{ this };
-};
+namespace packet_serializer_1 {
+	class MyPacket : public Packet {
+	public:
+		IntType i_val_{ this };
+		CharType c_val_{ this };
+		StringType str_val_{ this };
+	};
+}
 
+namespace packet_serializer_2 {
+	class InnerStruct : public Struct {
+	public:
+		StructVal<IntType> i_val_{ this };
+		StructVal<StringType> str_val_{ this };
+	};
+
+	class MyPacket2 : public Struct {
+	public:
+		StructVal<IntType> i_val_{ this };
+		StructVal<StringType> str_val_{ this };
+		StructVal<ListType<IntType>> l_val_{ this };
+		StructVal<InnerStruct> struct_val_{ this };
+	};
+}
 
 int main(int argc, const char * argv[]) {
-	MyPacket packet;
-	packet.i_val_.data_ = 0xcdcdffab;
-	packet.c_val_.data_ = 'c';
-	packet.str_val_.data_ = std::string("bakashinji");
+	{
+		using namespace packet_serializer_1;
+
+		MyPacket packet;
+		packet.i_val_.data_ = 0xcdcdffab;
+		packet.c_val_.data_ = 'c';
+		packet.str_val_.data_ = std::string("bakashinji");
+
+		unsigned char buffer[100]{ 0, };
+		packet.Serialize(buffer);
+	}
+
+	{
+		using namespace packet_serializer_2;
+
+		MyPacket2 packet;
+		packet.i_val_.data_ = 0xcdcdffab;
+		packet.str_val_.data_ = "bakashinji";
+		for (int i = 0; i < 10; ++i) {
+			packet.l_val_.data_list_.push_back(i);
+		}
+
+		packet.struct_val_.i_val_.data_ = 0xbaba;
+		packet.struct_val_.str_val_.data_ = "acoross";
+
+		unsigned char buffer[100]{ 0, };
+		packet.Serialize(buffer);
+	}
+
+	std::tuple<int, char> tt;
 	
-	unsigned char buffer[100]{0,};
-	packet.Serialize(buffer);
+	{
+		using namespace packet_serializer_2;
+
+		Struct2<IntType, CharType> struct2;
+		struct2.GetRest().val_.data_ = 'c';
+
+		typename StructElement<0, Struct2<IntType, CharType>>::type CT;
+		get<1>(struct2).data_;
+	}
 
 	return 0;
 }

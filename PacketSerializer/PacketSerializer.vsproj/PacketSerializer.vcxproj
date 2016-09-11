@@ -113,6 +113,8 @@
     <ClInclude Include="..\PacketSerializer\packet_defines.hpp" />
     <ClInclude Include="..\PacketSerializer\packet_serializer_1.hpp" />
     <ClInclude Include="..\PacketSerializer\packet_serializer_1_types.hpp" />
+    <ClInclude Include="..\PacketSerializer\packet_serializer_2.hpp" />
+    <ClInclude Include="..\PacketSerializer\packet_serializer_3.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\PacketSerializer\main.cpp" />

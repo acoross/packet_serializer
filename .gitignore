@@ -1,4 +1,7 @@
 **/DerivedData/**/*
 PacketSerializer/PacketSerializer.vsproj/Debug/
+PacketSerializer/PacketSerializer.vsproj/x64/
+PacketSerializer/PacketSerializer.vsproj/x64/**/*
+
 **/*.db
 **/*.opendb
