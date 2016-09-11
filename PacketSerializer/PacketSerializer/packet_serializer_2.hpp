@@ -74,7 +74,7 @@ namespace packet_serializer_2 {
 				owner->add(
 					[&](unsigned char* buffer)->unsigned char *
 				{
-					return Serialize(buffer);
+					return SerializableT::Serialize(buffer);
 				});
 			}
 

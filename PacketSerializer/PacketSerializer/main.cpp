@@ -28,7 +28,7 @@ namespace packet_serializer_1 {
 namespace packet_serializer_2 {
 	class InnerStruct : public Struct {
 	public:
-		StructVal<IntType> i_val_{ this };
+		StructVal<CharType> c_val_{ this };
 		StructVal<StringType> str_val_{ this };
 	};
 
@@ -36,7 +36,7 @@ namespace packet_serializer_2 {
 	public:
 		StructVal<IntType> i_val_{ this };
 		StructVal<StringType> str_val_{ this };
-		StructVal<ListType<IntType>> l_val_{ this };
+		StructVal<ListType<ShortType>> l_val_{ this };
 		StructVal<InnerStruct> struct_val_{ this };
 	};
 }
@@ -52,6 +52,9 @@ int main(int argc, const char * argv[]) {
 
 		unsigned char buffer[100]{ 0, };
 		packet.Serialize(buffer);
+
+		int i;
+		i = 10;
 	}
 
 	{
@@ -64,24 +67,16 @@ int main(int argc, const char * argv[]) {
 			packet.l_val_.data_list_.push_back(i);
 		}
 
-		packet.struct_val_.i_val_.data_ = 0xbaba;
+		packet.struct_val_.c_val_.data_ = 0xfa;
 		packet.struct_val_.str_val_.data_ = "acoross";
 
 		unsigned char buffer[100]{ 0, };
 		packet.Serialize(buffer);
+
+		int i;
+		i = 10;
 	}
 
-	std::tuple<int, char> tt;
-	
-	{
-		using namespace packet_serializer_2;
-
-		Struct2<IntType, CharType> struct2;
-		struct2.GetRest().val_.data_ = 'c';
-
-		typename StructElement<0, Struct2<IntType, CharType>>::type CT;
-		get<1>(struct2).data_;
-	}
 
 	return 0;
 }

@@ -35,7 +35,7 @@ public:
 		return _MyBase::Serialize(buffer);
 	}
 
-	constexpr _MyBase& GetRest()
+	constexpr _MyBase& GetRest() const
 	{
 		return (_MyBase&)(*this);
 	}

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B0FCEABB1D84444E00B59A35 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0FCEABA1D84444E00B59A35 /* main.cpp */; };
+		B081068A1D8556D200D3FE21 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B08106841D8556D200D3FE21 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,11 +23,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B08106841D8556D200D3FE21 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B08106851D8556D200D3FE21 /* packet_defines.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_defines.hpp; sourceTree = "<group>"; };
+		B08106861D8556D200D3FE21 /* packet_serializer_1_types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_1_types.hpp; sourceTree = "<group>"; };
+		B08106871D8556D200D3FE21 /* packet_serializer_1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_1.hpp; sourceTree = "<group>"; };
+		B08106881D8556D200D3FE21 /* packet_serializer_2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_2.hpp; sourceTree = "<group>"; };
+		B08106891D8556D200D3FE21 /* packet_serializer_3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_3.hpp; sourceTree = "<group>"; };
 		B0FCEAB71D84444E00B59A35 /* PacketSerializer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PacketSerializer; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0FCEABA1D84444E00B59A35 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B0FCEAC21D844B3C00B59A35 /* packet_serializer_1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_1.hpp; sourceTree = "<group>"; };
-		B0FCEAC51D84508800B59A35 /* packet_serializer_1_types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_1_types.hpp; sourceTree = "<group>"; };
-		B0FCEAC71D84518500B59A35 /* packet_defines.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = packet_defines.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +62,12 @@
 		B0FCEAB91D84444E00B59A35 /* PacketSerializer */ = {
 			isa = PBXGroup;
 			children = (
-				B0FCEABA1D84444E00B59A35 /* main.cpp */,
-				B0FCEAC71D84518500B59A35 /* packet_defines.hpp */,
-				B0FCEAC21D844B3C00B59A35 /* packet_serializer_1.hpp */,
-				B0FCEAC51D84508800B59A35 /* packet_serializer_1_types.hpp */,
+				B08106841D8556D200D3FE21 /* main.cpp */,
+				B08106851D8556D200D3FE21 /* packet_defines.hpp */,
+				B08106861D8556D200D3FE21 /* packet_serializer_1_types.hpp */,
+				B08106871D8556D200D3FE21 /* packet_serializer_1.hpp */,
+				B08106881D8556D200D3FE21 /* packet_serializer_2.hpp */,
+				B08106891D8556D200D3FE21 /* packet_serializer_3.hpp */,
 			);
 			path = PacketSerializer;
 			sourceTree = "<group>";
@@ -124,7 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0FCEABB1D84444E00B59A35 /* main.cpp in Sources */,
+				B081068A1D8556D200D3FE21 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +249,7 @@
 				B0FCEAC01D84444E00B59A35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
