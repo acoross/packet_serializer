@@ -32,12 +32,20 @@ namespace packet_serializer_2 {
 		StructVal<StringType> str_val_{ this };
 	};
 
+	struct InnerStruct2 {
+		int a{0};
+		char b{1};
+		unsigned char data[100]{0,};
+	};
+
 	class MyPacket2 : public Struct {
 	public:
 		StructVal<IntType> i_val_{ this };
 		StructVal<StringType> str_val_{ this };
 		StructVal<ListType<ShortType>> l_val_{ this };
 		StructVal<InnerStruct> struct_val_{ this };
+
+		StructVal<RawType<InnerStruct2>> struct2_val_{this};
 	};
 }
 
@@ -69,6 +77,10 @@ int main(int argc, const char * argv[]) {
 
 		packet.struct_val_.c_val_.data_ = 0xfa;
 		packet.struct_val_.str_val_.data_ = "acoross";
+
+		packet.struct2_val_.data_.a = 1;
+		//packet.struct2_val_.data_.b = 2;
+		packet.struct2_val_.data_.data[0] = 0xab;
 
 		unsigned char buffer[100]{ 0, };
 		packet.Serialize(buffer);

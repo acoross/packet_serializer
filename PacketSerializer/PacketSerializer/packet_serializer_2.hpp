@@ -15,33 +15,52 @@
 
 namespace packet_serializer_2 {
 
-	class ISerializable {
+//	class ISerializable {
+//	public:
+//		virtual unsigned char* Serialize(unsigned char* buffer) = 0;
+//	};
+
+	class SerializableBase {
 	public:
-		virtual unsigned char* Serialize(unsigned char* buffer) = 0;
 	};
 
 	///////////////////////////////////////////////////////////////////////////
 	template <typename NumericT>
-	class NumericType : public ISerializable {
+	unsigned char* Serialize(const NumericT& val, unsigned char* buffer) {
+		memcpy(buffer, (void*)&val, sizeof(val));
+		return buffer + sizeof(val);
+	}
+
+	template <typename NumericT>
+	class NumericType {
 	public:
-		NumericType() : data_(0) {}
+		NumericType() : data_(0){}
 		NumericType(NumericT v) : data_(v) {}
 		
-		virtual	unsigned char* Serialize(unsigned char* buffer) override {
-			memcpy(buffer, (void*)&data_, sizeof(data_));
-			return buffer + sizeof(data_);
+		unsigned char* Serialize(unsigned char* buffer) {
+			return packet_serializer_2::Serialize(data_, buffer);
 		}
 		
-		NumericT data_{ 0 };
+		NumericT data_{ 0, };
 	};
 
 	using IntType = NumericType<int>;
 	using CharType = NumericType<char>;
 	using ShortType = NumericType<short>;
 
-	class StringType : public ISerializable {
+	template <typename RawT>
+	class RawType {
 	public:
-		virtual unsigned char* Serialize(unsigned char* buffer) override {
+		unsigned char* Serialize(unsigned char* buffer) {
+			return packet_serializer_2::Serialize(data_, buffer);
+		}
+		
+		RawT data_;
+	};
+
+	class StringType {
+	public:
+		unsigned char* Serialize(unsigned char* buffer) {
 			memcpy(buffer, data_.c_str(), data_.length());
 			return buffer + data_.length();
 		}
@@ -49,21 +68,34 @@ namespace packet_serializer_2 {
 		std::string data_;
 	};
 
-	template <typename SerializableT>
-	class ListType : public ISerializable {
+	template <typename RawT>
+	class ListType {
 	public:
-		virtual unsigned char* Serialize(unsigned char* buffer) override {
+		unsigned char* Serialize(unsigned char* buffer) {
 			for (auto& val : data_list_) {
-				buffer = val.Serialize(buffer);
+				buffer = packet_serializer_2::Serialize(val, buffer);
 			}
 			return buffer;
 		}
 
-		std::list<SerializableT> data_list_;
+		std::list<RawT> data_list_;
+	};
+
+	template <typename RawT>
+	class ListType {
+	public:
+		unsigned char* Serialize(unsigned char* buffer) {
+			for (auto& val : data_list_) {
+				buffer = packet_serializer_2::Serialize(val, buffer);
+			}
+			return buffer;
+		}
+
+		std::list<RawT> data_list_;
 	};
 	
 	///////////////////////////////////////////////////////////////////
-	class Struct : public ISerializable {
+	class Struct {
 	public:
 		//typedef IntType ISerializableT;
 		template <typename SerializableT>
@@ -79,7 +111,7 @@ namespace packet_serializer_2 {
 			}
 
 		};
-		virtual unsigned char*  Serialize(unsigned char* buffer) override {
+		unsigned char*  Serialize(unsigned char* buffer) {
 			for (auto& serializer : values_)
 			{
 				buffer = serializer(buffer);
