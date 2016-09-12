@@ -124,7 +124,8 @@ void test2() {
 
 int main(int argc, const char * argv[]) {
 
-	test_cereal::testCereal();
+	//test_cereal::testCereal();
+	test_cereal::test_2();
 
 	return 0;
 }
