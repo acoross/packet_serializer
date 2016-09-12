@@ -9,16 +9,12 @@
 #include <iostream>
 #include <tuple>
 #include <type_traits>
-#include <sstream>
-#include <strstream>
 
 #include "packet_serializer_1.hpp"
 #include "packet_serializer_1_types.hpp"
 #include "packet_serializer_2.hpp"
 #include "packet_serializer_3.hpp"
-
-//#include <cereal/cereal.hpp>
-//#include <cereal/archives/binary.hpp>
+#include "cereal_test.hpp"
 
 namespace packet_serializer_1 {
 	class MyPacket : public Packet {
@@ -128,19 +124,7 @@ void test2() {
 
 int main(int argc, const char * argv[]) {
 
-	std::strstream strs;
-	std::stringbuf sb;
-	std::stringstream ss;
-	//ss.set_rdbuf(&sb);	//basic_ios:: _Mysb *_Mystrbuf;
-
-	{
-//		cereal::BinaryOutputArchive ar(ss);
-//		ar('s', 'e', 'x');	//itsStream.rdbuf()->sputn(...)
-	}
-
-	std::cout << "sb: " << sb.str() << std::endl;
-	std::cout << "ss: " << ss.str() << std::endl;
-		// ss.str() : _Mysb _Stringbuffer;	// the string buffer
+	test_cereal::testCereal();
 
 	return 0;
 }

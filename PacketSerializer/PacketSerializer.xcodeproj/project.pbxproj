@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B081068A1D8556D200D3FE21 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B08106841D8556D200D3FE21 /* main.cpp */; };
+		B0E5A3811D870CC70057B79B /* cereal_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E5A37F1D870CC70057B79B /* cereal_test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		B08106871D8556D200D3FE21 /* packet_serializer_1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_1.hpp; sourceTree = "<group>"; };
 		B08106881D8556D200D3FE21 /* packet_serializer_2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_2.hpp; sourceTree = "<group>"; };
 		B08106891D8556D200D3FE21 /* packet_serializer_3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packet_serializer_3.hpp; sourceTree = "<group>"; };
+		B0E5A37F1D870CC70057B79B /* cereal_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cereal_test.cpp; sourceTree = "<group>"; };
+		B0E5A3801D870CC70057B79B /* cereal_test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cereal_test.hpp; sourceTree = "<group>"; };
 		B0FCEAB71D84444E00B59A35 /* PacketSerializer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PacketSerializer; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -68,6 +71,8 @@
 				B08106871D8556D200D3FE21 /* packet_serializer_1.hpp */,
 				B08106881D8556D200D3FE21 /* packet_serializer_2.hpp */,
 				B08106891D8556D200D3FE21 /* packet_serializer_3.hpp */,
+				B0E5A37F1D870CC70057B79B /* cereal_test.cpp */,
+				B0E5A3801D870CC70057B79B /* cereal_test.hpp */,
 			);
 			path = PacketSerializer;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B081068A1D8556D200D3FE21 /* main.cpp in Sources */,
+				B0E5A3811D870CC70057B79B /* cereal_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,14 +225,20 @@
 		B0FCEABF1D84444E00B59A35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 			};
 			name = Debug;
 		};
 		B0FCEAC01D84444E00B59A35 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 			};
 			name = Release;
 		};
