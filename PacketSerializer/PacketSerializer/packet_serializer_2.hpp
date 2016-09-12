@@ -54,7 +54,7 @@ namespace packet_serializer_2 {
 		unsigned char* Serialize(unsigned char* buffer) {
 			return packet_serializer_2::Serialize(data_, buffer);
 		}
-		
+
 		RawT data_;
 	};
 
@@ -66,19 +66,6 @@ namespace packet_serializer_2 {
 		}
 
 		std::string data_;
-	};
-
-	template <typename RawT>
-	class ListType {
-	public:
-		unsigned char* Serialize(unsigned char* buffer) {
-			for (auto& val : data_list_) {
-				buffer = packet_serializer_2::Serialize(val, buffer);
-			}
-			return buffer;
-		}
-
-		std::list<RawT> data_list_;
 	};
 
 	template <typename RawT>
