@@ -17,8 +17,8 @@
 #include "packet_serializer_2.hpp"
 #include "packet_serializer_3.hpp"
 
-#include "Cereal/cereal.hpp"
-#include "Cereal/archives/binary.hpp"
+//#include <cereal/cereal.hpp>
+//#include <cereal/archives/binary.hpp>
 
 namespace packet_serializer_1 {
 	class MyPacket : public Packet {
@@ -74,6 +74,8 @@ namespace Datagram {
 		static unsigned char* _Serialize(
 			unsigned char* buffer, T data)
 		{
+			static_assert(!std::is_pointer<T*>::value, "cannot serialize pointer");
+
 			memcpy(buffer, (void*)&data, sizeof(data));
 			return buffer + sizeof(data);
 		}
@@ -82,12 +84,6 @@ namespace Datagram {
 	template <typename T>
 	unsigned char* serialize(unsigned char* buffer, T data) {
 		return DataSerializer<T>::_Serialize(buffer, data);
-	}
-
-	template <typename T>
-	unsigned char* serialize(unsigned char* buffer, T* data) {
-		static_assert(0, "cannot serialize pointer");
-		return buffer;
 	}
 }
 
@@ -138,8 +134,8 @@ int main(int argc, const char * argv[]) {
 	//ss.set_rdbuf(&sb);	//basic_ios:: _Mysb *_Mystrbuf;
 
 	{
-		cereal::BinaryOutputArchive ar(ss);
-		ar('s', 'e', 'x');	//itsStream.rdbuf()->sputn(...)
+//		cereal::BinaryOutputArchive ar(ss);
+//		ar('s', 'e', 'x');	//itsStream.rdbuf()->sputn(...)
 	}
 
 	std::cout << "sb: " << sb.str() << std::endl;
